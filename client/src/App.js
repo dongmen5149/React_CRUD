@@ -2,7 +2,7 @@ import './App.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useState } from 'react';
-import ReactHtmlParser from 'react-html-parser';
+import ReactHtmlParser from 'html-react-parser'
 
 function App() {
   const [movieContent, setMovieContent] = useState({
@@ -25,10 +25,14 @@ function App() {
     <div className="App">
       <h1>Movie Review</h1>
       <div className='movie-container'>
-        <h2>{element.title}</h2>
-        <div>
-          {ReactHtmlParser(element.content)}
-        </div>
+        {viewContent.map(element =>
+          <div>
+            <h2>{element.title}</h2>
+            <div>
+              {ReactHtmlParser(element.content)}
+            </div>
+          </div>
+        )}
       </div>
       <div className='form-wrapper'>
         <input className="title-input"
